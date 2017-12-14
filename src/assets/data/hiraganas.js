@@ -1,4 +1,4 @@
-[
+var hiraganas = [
   {
     "kana": "あ",
     "alphabet": "a",
@@ -428,10 +428,9 @@
         "alphabet": "myo"
       },
       {
-        "kana": "く",
-        "alphabet": "ku"
+        "kana": "りょ",
+        "alphabet": "ryo"
       }
-
     ]
   }
 ]
