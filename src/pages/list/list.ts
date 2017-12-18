@@ -1,34 +1,27 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
-
-import { ItemDetailsPage } from '../item-details/item-details';
+import {Observable} from "rxjs";
+import {DetailPage} from "../detail/detail";
+import {KanaService} from "../../app/writing/service/kana-service";
+import {ParentKana} from "../../app/writing/parent-kana";
 
 @Component({
   selector: 'page-list',
-  templateUrl: 'list.html'
+  templateUrl: 'list.html',
 })
-export class ListPage {
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+export class ListPage implements OnInit{
+  items: Observable<ParentKana[]>;
+  title: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+  constructor(private parentKanaService: KanaService, public navCtrl: NavController, public navParams: NavParams) {}
 
-    this.items = [];
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  ngOnInit(): void {
+    this.title = "Groupes";
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
-    });
+  navigateToDetail(parentKana: ParentKana){
+    this.navCtrl.push(DetailPage, {parentKana: parentKana})
   }
+
 }

@@ -1,4 +1,4 @@
-var katakanas = [
+[
   {
     "kana": "ア",
     "alphabet": "a",

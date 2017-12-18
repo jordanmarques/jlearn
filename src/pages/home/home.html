@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Jlearn</ion-title>
+    <span><img text-center src="../../assets/imgs/jpn_icon.png"/></span>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <p text-center>
+    <button ion-button full color="orange-medium" (click)="navigateToList()" *ngFor="let type of types">
+      {{ type }}
+    </button>
+  </p>
+
+</ion-content>
