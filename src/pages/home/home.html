@@ -12,7 +12,7 @@
 <ion-content padding>
 
   <p text-center>
-    <button ion-button full color="orange-medium" (click)="navigateToList()" *ngFor="let type of types">
+    <button ion-button full color="orange-medium" (click)="navigateToList(type)" *ngFor="let type of types">
       {{ type }}
     </button>
   </p>

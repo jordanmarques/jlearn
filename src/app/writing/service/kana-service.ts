@@ -16,4 +16,18 @@ export class KanaService {
       .map(key => WritingType[key] )
   }
 
+  kanasFor(type: WritingType): Observable<any[]>{
+
+    console.log(type);
+
+    switch(type){
+      case WritingType.KATAKANA:
+        return this.katakanaService.all();
+      case WritingType.HIRAGANA:
+        return this.hiraganaService.all();
+      default:
+        throw "No Kanas found for ${type} writing type";
+    }
+  }
+
 }

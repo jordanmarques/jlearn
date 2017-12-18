@@ -18,7 +18,8 @@ export class HomePage implements OnInit{
     this.types = this.kanaService.types();
   }
 
-  navigateToList(){
-    this.navController.push(ListPage)
+  navigateToList(type: WritingType){
+    console.log(type);
+    this.navController.push(ListPage, {writingType: type})
   }
 }
