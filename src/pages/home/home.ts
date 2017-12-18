@@ -19,7 +19,6 @@ export class HomePage implements OnInit{
   }
 
   navigateToList(type: WritingType){
-    console.log(type);
     this.navController.push(ListPage, {writingType: type})
   }
 }

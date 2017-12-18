@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {KatakanaService} from "../katakana/katakana-service";
 import {HiraganaService} from "../hiragana/hiragana-service";
-import {ParentKana} from "../parent-kana";
 import {Observable} from "rxjs";
 import {WritingType} from "../writing-type";
 
@@ -17,9 +16,6 @@ export class KanaService {
   }
 
   kanasFor(type: WritingType): Observable<any[]>{
-
-    console.log(type);
-
     switch(type){
       case WritingType.KATAKANA:
         return this.katakanaService.all();

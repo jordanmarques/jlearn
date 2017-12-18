@@ -14,12 +14,14 @@ import { HiraganaDao } from './writing/hiragana/hiragana-dao';
 import { HiraganaService } from './writing/hiragana/hiragana-service';
 import { KatakanaService } from './writing/katakana/katakana-service';
 import { KanaService } from './writing/service/kana-service';
+import {DetailPage} from "../pages/detail/detail";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    DetailPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { KanaService } from './writing/service/kana-service';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    DetailPage
   ],
   providers: [
     StatusBar,
