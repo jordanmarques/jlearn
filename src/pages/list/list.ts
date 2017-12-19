@@ -22,7 +22,7 @@ export class ListPage implements OnInit{
   }
 
   ngOnInit(): void {
-    this.title = "Groupes";
+    this.title = this.type;
     this.items = this.kanaService.kanasFor(this.type);
   }
 
