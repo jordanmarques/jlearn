@@ -33,13 +33,15 @@ before_script:
   - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/26.0.2
 
 script:
-  - ionic cordova build --release android
-  - mv /home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/android-release-unsigned.apk /home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/jlearn-unsigned.apk
+  - ionic cordova build android
+  - mv /home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/android-debug.apk /home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/jlearn-unsigned.apk
+  - export APK_UNSIGNED_PATH=/home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/jlearn-unsigned.apk
 
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_KEY
-  file: /home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/jlearn-unsigned.apk
+  file: $APK_UNSIGNED_PATH
   skip_cleanup: true
   on:
+    branch: master
     tags: true
