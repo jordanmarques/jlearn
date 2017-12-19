@@ -34,3 +34,12 @@ before_script:
 
 script:
   - ionic cordova build --release android
+  - mv /home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/android-release-unsigned.apk /home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/jlearn-unsigned.apk
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_KEY
+  file: /home/travis/build/jordanmarques/jlearn/platforms/android/build/outputs/apk/release/jlearn-unsigned.apk
+  skip_cleanup: true
+  on:
+    tags: true
