@@ -10,7 +10,7 @@ export class KatakanaDao {
   }
 
   all(): Observable<Katakana[]>{
-    return this.http.get<Katakana[]>('../../assets/data/katakanas.json');
+    return this.http.get<Katakana[]>('assets/data/katakanas.json');
   }
 
 }

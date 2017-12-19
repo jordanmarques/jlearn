@@ -10,7 +10,7 @@ export class HiraganaDao {
   constructor(private http: HttpClient) {}
 
   all(): Observable<Hiragana[]>{
-    return this.http.get<Hiragana[]>('../../assets/data/hiraganas.json');
+    return this.http.get<Hiragana[]>('assets/data/hiraganas.json');
   }
 
 }
