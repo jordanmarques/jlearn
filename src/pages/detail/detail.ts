@@ -10,11 +10,9 @@ import { ParentKana } from "../../app/writing/parent-kana";
 export class DetailPage {
 
   private parentKana: ParentKana;
-  private title: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, ) {
     this.parentKana = navParams.get('parentKana');
-    console.log(this.parentKana);
-    this.title = `${this.parentKana.kana} ${this.parentKana.alphabet}`
+    console.log(this.parentKana)
   }
 }
