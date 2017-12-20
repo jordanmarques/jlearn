@@ -22,6 +22,7 @@ install:
 
 before_script:
   - wget --quiet http://dl.google.com/android/android-sdk_r24.4-linux.tgz
+  - sudo apt-get install xmlstarlet
   - tar -xf android-sdk_r24.4-linux.tgz
   - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter platform-tools
   - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter build-tools-26.0.2
@@ -42,9 +43,10 @@ branches:
     - master
 
 before_deploy:
-  - npm version --force major
+  - npm version major --no-git-tag-version
   - export VERSION=$(cat package.json | grep version | head -1 | awk '{ print $2 }' | sed 's/[",]//g')
   - echo -n VERSION=$VERSION
+  - xmlstarlet edit -L -u "/_:widget/@version" -v $VERSION config.xml
   - git config --global user.name "Travis CI"
   - git config --global user.email "builds@travis-ci.com"
   - git tag $VERSION -a -m "Generated tag from package.json version"
@@ -58,10 +60,12 @@ deploy:
     branch: master
 
 after_deploy:
-  - git add package.json
-  - git commit -m "Set build VERSION number"
-  - git remote add project https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
-  - git push --quiet --set-upstream project master
+  - git remote rm origin
+  - git remote add origin https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git
+  - git checkout master
+  - git add package.json config.xml
+  - git commit -m "[skip ci] set new version"
+  - git push --set-upstream origin master
 
 notifications:
   email: false
