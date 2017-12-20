@@ -60,8 +60,8 @@ deploy:
 after_deploy:
   - git add package.json
   - git commit -m "Set build VERSION number"
-  - git remote add origin https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
-  - git push --quiet --set-upstream origin master
+  - git remote add project https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
+  - git push --quiet --set-upstream project master
 
 notifications:
   email: false
