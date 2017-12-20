@@ -41,14 +41,6 @@ branches:
   only:
     - master
 
-deploy:
-  provider: releases
-  api_key: $GITHUB_OAUTH_KEY
-  file: $APK_UNSIGNED_PATH
-  skip_cleanup: true
-  on:
-    tags: true
-
 after_success:
   # CREATE GIT TAG && UPDATE VERSION
   - npm version --force major
@@ -60,3 +52,12 @@ after_success:
   - git commit -m "Set build VERSION number" public/version
   - git tag $VERSION -a -m "Generated tag from package.json version"
   - git push --quiet https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn $VERSION > /dev/null 2>&1
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_KEY
+  file: $APK_UNSIGNED_PATH
+  skip_cleanup: true
+  on:
+    tags: true
+    branch: master
