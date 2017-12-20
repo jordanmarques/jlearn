@@ -43,6 +43,10 @@ branches:
 
 before_deploy:
   - npm version --force major
+  - git add package.json
+  - git commit -m "Set build VERSION number"
+  - git remote add project https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
+  - git push --set-upstream project master
   - export VERSION=$(cat package.json | grep version | head -1 | awk '{ print $2 }' | sed 's/[",]//g')
   - echo -n VERSION=$VERSION
   - git config --global user.name "Travis CI"
@@ -56,12 +60,6 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
-
-after_deploy:
-  - git add package.json
-  - git commit -m "Set build VERSION number"
-  - git remote add project https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
-  - git push --set-upstream project master
 
 notifications:
   email: false
