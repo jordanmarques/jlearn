@@ -41,7 +41,7 @@ branches:
   only:
     - master
 
-after_success:
+before_deploy:
   # CREATE GIT TAG && UPDATE VERSION
   - npm version --force major
   - export VERSION=$(cat package.json | grep version | head -1 | awk '{ print $2 }' | sed 's/[",]//g')
@@ -49,6 +49,7 @@ after_success:
   - git config --global user.name "Travis CI"
   - export GIT_TAG=build-$TRAVIS_BRANCH-$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
   - echo -n $VERSION > public/version
+  - git add .
   - git commit -m "Set build VERSION number" public/version
   - git tag $VERSION -a -m "Generated tag from package.json version"
   - git push --quiet https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn $VERSION > /dev/null 2>&1
@@ -61,3 +62,6 @@ deploy:
   on:
     tags: true
     branch: master
+
+notifications:
+  email: false
