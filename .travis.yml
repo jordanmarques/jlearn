@@ -64,6 +64,7 @@ after_deploy:
   - git status
   - git add package.json config.xml
   - git commit -m "Set Version"
+  - git log
   - git remote add project https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
   - git push --set-upstream project master
 
