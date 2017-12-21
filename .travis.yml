@@ -42,7 +42,9 @@ branches:
     - master
 
 before_deploy:
+  - git status
   - npm version --force major
+  - git status
   - export VERSION=$(cat package.json | grep version | head -1 | awk '{ print $2 }' | sed 's/[",]//g')
   - echo -n VERSION=$VERSION
   - git config --global user.name "Travis CI"
