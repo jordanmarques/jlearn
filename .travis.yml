@@ -60,10 +60,10 @@ deploy:
   on:
     branch: master
 
-after_success:
+after_deploy:
   - git add package.json config.xml
   - git commit -m "Set Version"
-  - git remote set-url origin https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
+  - git remote add origin https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
   - git push --set-upstream origin master
 
 notifications:
