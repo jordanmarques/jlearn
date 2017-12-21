@@ -60,7 +60,7 @@ deploy:
   on:
     branch: master
 
-after_deploy:
+after_success:
   - git add package.json config.xml
   - git commit -m "Set Version"
   - git remote set-url origin https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git > /dev/null 2>&1
