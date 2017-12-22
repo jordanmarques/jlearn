@@ -65,7 +65,7 @@ after_deploy:
   - git remote add origin https://$GITHUB_OAUTH_KEY@github.com/jordanmarques/jlearn.git
   - git checkout master
   - git add package.json config.xml
-  - git commit -m "Set Version"
+  - git commit -m "[skip ci] set new version"
   - git push --set-upstream origin master
 
 notifications:
